@@ -10,6 +10,7 @@
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
 import 'package:demo_ui_flutter/src/business_page_item.dart';
+import 'package:demo_ui_flutter/src/smart_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_ui_flutter/src/home_page_item.dart';
 import 'package:demo_ui_flutter/src/school_page_item.dart';
@@ -24,7 +25,7 @@ class HomePageApp extends StatefulWidget {
 class _HomePageAppState extends State<HomePageApp> {
   int _selectedIndex = 0;
   var listPageItem = new List<Widget>();
-  var listTitleAppBar = ["Home", "Business", "School"];
+  var listTitleAppBar = ["Home", "Business", "Camera", "School", "Apps"];
 
   @override
   void initState() {
@@ -32,6 +33,8 @@ class _HomePageAppState extends State<HomePageApp> {
 
     listPageItem.add(HomePageItem());
     listPageItem.add(BusinessPageItem());
+    listPageItem.add(BusinessPageItem());
+    listPageItem.add(SchoolPageItem());
     listPageItem.add(SchoolPageItem());
   }
 
@@ -39,8 +42,14 @@ class _HomePageAppState extends State<HomePageApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${listTitleAppBar[_selectedIndex]}'),
-      ),
+          title: Text('${listTitleAppBar[_selectedIndex]}'),
+          leading: IconButton(
+            icon: Icon(Icons.menu),
+            color: Colors.white,
+            onPressed: () {},
+          ),
+          actions: _buildActionAppBar()),
+      drawer: _buildDrawerNavigation(),
       body: Center(
         child: listPageItem[_selectedIndex],
       ),
@@ -48,7 +57,44 @@ class _HomePageAppState extends State<HomePageApp> {
     );
   }
 
+  List<Widget> _buildActionAppBar() => <Widget>[
+        Container(
+            alignment: Alignment.center,
+            width: 50,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  height: 35,
+                  width: 35,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              "http://www.usanetwork.com/sites/usanetwork/files/styles/629x720/public/suits_cast_harvey.jpg?itok=fpTOeeBb"))),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 2,
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xff00ff1d),
+                    ),
+                  ),
+                )
+              ],
+            )),
+        SizedBox(
+          width: 10,
+        )
+      ];
+
   Widget _buildBottomNavigationBar() => BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -59,15 +105,37 @@ class _HomePageAppState extends State<HomePageApp> {
             title: Text('Business'),
           ),
           BottomNavigationBarItem(
+              icon: Icon(
+                Icons.camera,
+                size: 60,
+              ),
+              title: Text('', style: TextStyle(height: 0))),
+          BottomNavigationBarItem(
             icon: Icon(Icons.school),
             title: Text('School'),
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.apps),
+            title: Text('Apps'),
+          )
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       );
 
-
+  Widget _buildDrawerNavigation() => Drawer(
+        child: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text('Smart Home'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SmartHomePage()));
+              },
+            )
+          ],
+        ),
+      );
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
