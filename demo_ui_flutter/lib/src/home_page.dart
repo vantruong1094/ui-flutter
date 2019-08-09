@@ -10,6 +10,8 @@
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
 import 'package:demo_ui_flutter/src/business_page_item.dart';
+import 'package:demo_ui_flutter/src/listview/list_post_screen.dart';
+import 'package:demo_ui_flutter/src/listview/ui_list_one.dart';
 import 'package:demo_ui_flutter/src/smart_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_ui_flutter/src/home_page_item.dart';
@@ -23,6 +25,7 @@ class HomePageApp extends StatefulWidget {
 }
 
 class _HomePageAppState extends State<HomePageApp> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
   var listPageItem = new List<Widget>();
   var listTitleAppBar = ["Home", "Business", "Camera", "School", "Apps"];
@@ -41,12 +44,15 @@ class _HomePageAppState extends State<HomePageApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
           title: Text('${listTitleAppBar[_selectedIndex]}'),
           leading: IconButton(
             icon: Icon(Icons.menu),
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              _scaffoldKey.currentState.openDrawer();
+            },
           ),
           actions: _buildActionAppBar()),
       drawer: _buildDrawerNavigation(),
@@ -131,6 +137,26 @@ class _HomePageAppState extends State<HomePageApp> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => SmartHomePage()));
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            ListTile(
+              title: Text('List View'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListOnePage()));
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            ListTile(
+              title: Text('List Post'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListPostPage()));
               },
             )
           ],

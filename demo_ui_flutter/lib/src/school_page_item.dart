@@ -6,8 +6,10 @@ class SchoolPageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange,
+    return Scaffold(
+      body: Container(
+        color: Colors.redAccent,
+      ),
     );
   }
 }
