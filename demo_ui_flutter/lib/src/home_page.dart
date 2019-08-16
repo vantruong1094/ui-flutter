@@ -10,6 +10,8 @@
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
 import 'package:demo_ui_flutter/src/business_page_item.dart';
+import 'package:demo_ui_flutter/src/listview/list_category_page.dart';
+import 'package:demo_ui_flutter/src/listview/list_image_page.dart';
 import 'package:demo_ui_flutter/src/listview/list_post_screen.dart';
 import 'package:demo_ui_flutter/src/listview/ui_list_one.dart';
 import 'package:demo_ui_flutter/src/smart_home_page.dart';
@@ -157,6 +159,26 @@ class _HomePageAppState extends State<HomePageApp> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListPostPage()));
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            ListTile(
+              title: Text('List Image'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListImagePage()));
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            ListTile(
+              title: Text('List Category'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListCategoryPage()));
               },
             )
           ],
