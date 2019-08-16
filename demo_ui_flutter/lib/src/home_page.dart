@@ -15,6 +15,7 @@ import 'package:demo_ui_flutter/src/listview/list_image_page.dart';
 import 'package:demo_ui_flutter/src/listview/list_post_screen.dart';
 import 'package:demo_ui_flutter/src/listview/ui_list_one.dart';
 import 'package:demo_ui_flutter/src/smart_home_page.dart';
+import 'package:demo_ui_flutter/src/ui/custom_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_ui_flutter/src/home_page_item.dart';
 import 'package:demo_ui_flutter/src/school_page_item.dart';
@@ -179,6 +180,16 @@ class _HomePageAppState extends State<HomePageApp> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListCategoryPage()));
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            ListTile(
+              title: Text('Custom Clipper'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyClipperPage()));
               },
             )
           ],
