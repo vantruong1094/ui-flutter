@@ -16,11 +16,12 @@ class _ListImagePageState extends State<ListImagePage> {
   @override
   void initState() {
     // TODO: implement initState
-    getListImage().then((response){
+    for (int i = 0; i < 5; i++) {
+      getListImage().then((response) {}).catchError((error) {
+        print('has eror $error');
+      });
+    }
 
-    }).catchError((error) {
-      print('has eror $error');
-    });
     super.initState();
   }
 
@@ -68,7 +69,7 @@ class _ListImagePageState extends State<ListImagePage> {
     setState(() {
       jsons.forEach((json) => listItem.add(json));
     });
-    
+
     return "Success";
   }
 }
