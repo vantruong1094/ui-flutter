@@ -29,33 +29,51 @@ class FunkyOverlayState extends State<FunkyOverlay>
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Material(
-        color: Colors.transparent,
-        child: ScaleTransition(
-          scale: scaleAnimation,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                alignment: Alignment.bottomRight,
-                height: 40,
-                child: Icon(
-                  Icons.close,
-                  color: Colors.white,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+        child: Material(
+          color: Colors.transparent,
+          child: ScaleTransition(
+            scale: scaleAnimation,
+            child: GestureDetector(
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 40,
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        iconSize: 35,
+                        icon: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 300,
+                      width: double.infinity,
+                      decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(50.0),
+                        child: Text("Well hello there!"),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                height: 300,
-                decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0))),
-                child: Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  child: Text("Well hello there!"),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

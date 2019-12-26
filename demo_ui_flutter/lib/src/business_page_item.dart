@@ -6,8 +6,26 @@ class BusinessPageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            height: 300,
+            color: Colors.green,
+          ),
+          Positioned(
+            top: 150,
+            height: 400,
+            width: 300,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.orange,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

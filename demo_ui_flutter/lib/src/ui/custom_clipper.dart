@@ -28,6 +28,7 @@ class MyClipperPage extends StatelessWidget {
               child: RaisedButton(
                 onPressed: () {
                   showDialog(
+                    barrierDismissible: false,
                     context: context,
                     builder: (context) {
                       return FunkyOverlay();

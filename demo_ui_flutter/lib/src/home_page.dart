@@ -16,6 +16,8 @@ import 'package:demo_ui_flutter/src/listview/list_post_screen.dart';
 import 'package:demo_ui_flutter/src/listview/ui_list_one.dart';
 import 'package:demo_ui_flutter/src/smart_home_page.dart';
 import 'package:demo_ui_flutter/src/ui/custom_clipper.dart';
+import 'package:demo_ui_flutter/src/ui/custom_list_page.dart';
+import 'package:demo_ui_flutter/src/ui/demo_animate_container.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_ui_flutter/src/home_page_item.dart';
 import 'package:demo_ui_flutter/src/school_page_item.dart';
@@ -59,7 +61,7 @@ class _HomePageAppState extends State<HomePageApp> {
           ),
           actions: _buildActionAppBar()),
       drawer: _buildDrawerNavigation(),
-      body: Center(
+      body: Container(
         child: listPageItem[_selectedIndex],
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
@@ -176,6 +178,16 @@ class _HomePageAppState extends State<HomePageApp> {
               height: 1,
             ),
             ListTile(
+              title: Text('Custom List'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CustomListPage()));
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            ListTile(
               title: Text('List Category'),
               onTap: () {
                 Navigator.pop(context);
@@ -190,6 +202,16 @@ class _HomePageAppState extends State<HomePageApp> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyClipperPage()));
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            ListTile(
+              title: Text('Animate container'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => DemoAnimateContainer()));
               },
             )
           ],
